@@ -75,7 +75,7 @@ export default function ImagePickerExample({
 }
 
 const { width } = Dimensions.get("window");
-const imageSize = width * 0.8; // 80% of screen width
+const imageSize = width * 0.8;
 
 const styles = StyleSheet.create({
   container: {

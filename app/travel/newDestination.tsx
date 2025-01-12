@@ -31,9 +31,10 @@ const STATUS_OPTIONS: DestinationStatus[] = [
 ];
 
 export default function newDestination() {
-  const { addDestination } = useDestinationContext();
-  const [showDatePicker, setShowDatePicker] = useState(false);
+  const { addDestination } = useDestinationContext(); // 'addDestination' fonksiyonu, destinasyon eklemek için 'useDestinationContext' konteksinden alınır
+  const [showDatePicker, setShowDatePicker] = useState(false); // 'showDatePicker' durumu, tarih seçici (DatePicker) görünürlüğünü kontrol eder
   const [formData, setFormData] = useState<DestinationProps>({
+    // 'formData' durumu, destinasyon ekleme formunun verilerini tutar
     id: Math.random(),
     name: "",
     country: "",
@@ -50,6 +51,7 @@ export default function newDestination() {
   });
 
   const validateForm = (): boolean => {
+    // 'validateForm' fonksiyonu form verilerini doğrulamak için kullanılır
     let isValid = true;
     const newErrors = {
       name: "",
@@ -62,6 +64,7 @@ export default function newDestination() {
     }
 
     if (!formData.country.trim()) {
+      // Eğer ülke boşsa hata mesajı eklenir ve geçerlilik durumu false yapılır
       newErrors.country = "Country is required";
       isValid = false;
     }
@@ -71,11 +74,13 @@ export default function newDestination() {
   };
 
   const handleSubmit = () => {
+    // 'handleSubmit' fonksiyonu, form verilerini gönderme ve doğrulama işlemi yapar
+
     if (!validateForm()) {
       Alert.alert("Error", "Please fix the errors in the form");
       return;
     }
-
+    // Yeni destinasyon formdaki veriler ile oluşturulu
     const newDestination: DestinationProps = {
       id: Math.random(),
       name: formData.name,
@@ -87,10 +92,10 @@ export default function newDestination() {
       places: formData.places,
     };
 
-    addDestination(newDestination);
+    addDestination(newDestination); // Yeni destinasyon, 'addDestination' fonksiyonu ile eklenir
     router.push("/travel/userDestinations");
 
-    // Reset form
+    // Form sıfırlanır
     setFormData({
       id: Math.random(),
       name: "",
@@ -111,7 +116,7 @@ export default function newDestination() {
           <Text style={styles.label}>Destination Name</Text>
           <TextInput
             style={[styles.input, errors.name && styles.inputError]}
-            placeholder="e.g., Eiffel Tower Tour"
+            placeholder="e.g., Bee Coffee"
             value={formData.name}
             onChangeText={(text) =>
               setFormData((prev) => ({ ...prev, name: text }))

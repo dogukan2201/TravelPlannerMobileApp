@@ -16,8 +16,9 @@ const TravelDetailPage = () => {
   const { id } = useLocalSearchParams();
 
   const openGoogleMaps = (PLACE_NAME: string) => {
-    //Örtülüintent örnek
+    // 'openGoogleMaps' fonksiyonu, verilen yer adını kullanarak Google Maps'te arama yapar
     const url = `https://www.google.com/maps/search/${PLACE_NAME}`;
+    // 'Linking.openURL' ile Google Maps'i açmak için URL'yi tarayıcıda açar
     Linking.openURL(url).catch((err) =>
       console.error("Failed to open Google Maps:", err)
     );

@@ -4,7 +4,6 @@ import {
   StyleSheet,
   Image,
   ScrollView,
-  Dimensions,
   TouchableOpacity,
   Linking,
 } from "react-native";
@@ -15,8 +14,6 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import { EditDestinationModal } from "@/components/EditDestinationModal";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
-
-const { width } = Dimensions.get("window");
 
 const UserDestinationDetail = () => {
   const { id } = useLocalSearchParams();

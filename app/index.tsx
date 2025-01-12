@@ -59,7 +59,7 @@ const HomeScreen = () => {
         <TouchableOpacity
           style={styles.button}
           onPress={() => {
-            router.push("/travel");
+            router.push("/travel"); //Expo Router ile sayfa yönlendirme yapıldı.
           }}
         >
           <Text style={styles.buttonText}>Get Started</Text>

@@ -24,20 +24,23 @@ export interface DestinationContextProps {
   removeDestination: (id: number) => void;
 }
 
-const DestinationContext = createContext<DestinationContextProps | undefined>(
+const DestinationContext = createContext<DestinationContextProps | undefined>( // 'DestinationContext' adında bir kontekst oluşturulur
   undefined
 );
 
 export const DestinationProvider: React.FC<{ children: ReactNode }> = ({
+  // 'DestinationProvider' adında bir bileşen oluşturulur
   children,
 }) => {
   const [destinations, setDestinations] = useState<DestinationProps[]>([]);
 
   const addDestination = (destination: DestinationProps) => {
+    // 'addDestination' fonksiyonu, yeni bir destinasyon ekler
     setDestinations((prev) => [...prev, destination]);
   };
 
   const updateDestination = (
+    // 'updateDestination' fonksiyonu, bir destinasyonu günceller
     id: number,
     updatedDestination: DestinationProps
   ) => {
@@ -49,11 +52,12 @@ export const DestinationProvider: React.FC<{ children: ReactNode }> = ({
   };
 
   const removeDestination = (id: number) => {
+    // 'removeDestination' fonksiyonu, bir destinasyonu siler
     setDestinations((prev) => prev.filter((dest) => dest.id !== id));
   };
 
   return (
-    <DestinationContext.Provider
+    <DestinationContext.Provider // 'DestinationContext.Provider' bileşeni ile kontekst sağlanır
       value={{
         destinations,
         addDestination,
@@ -67,6 +71,7 @@ export const DestinationProvider: React.FC<{ children: ReactNode }> = ({
 };
 
 export const useDestinationContext = (): DestinationContextProps => {
+  // 'useDestinationContext' adında bir özelleştirilmiş bir kancayı dışa aktarır
   const context = useContext(DestinationContext);
   if (!context) {
     throw new Error(

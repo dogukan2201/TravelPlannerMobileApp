@@ -11,20 +11,21 @@ import { useLocalSearchParams, useRouter } from "expo-router";
 import { useTodos } from "@/context";
 
 const EditScreen = () => {
-  const { id } = useLocalSearchParams();
-  const { todos, updateTodo } = useTodos();
+  const { id } = useLocalSearchParams(); // 'id' parametresi, 'useLocalSearchParams' hookundan alınır
+  const { todos, updateTodo } = useTodos(); // 'todos' ve 'updateTodo' değişkenleri, 'useTodos' konteksinden alınır
   const router = useRouter();
-  const [editedTitle, setEditedTitle] = useState("");
+  const [editedTitle, setEditedTitle] = useState(""); // 'editedTitle' durumu, düzenlenen todo başlığını tutar
 
   const todo = todos.find((todo) => todo.id.toString() === id);
 
   useEffect(() => {
     if (todo) {
-      setEditedTitle(todo.title);
+      setEditedTitle(todo.title); // 'editedTitle' durumu, todo başlığı ile güncellenir
     }
   }, [todo]);
 
   const handleUpdate = () => {
+    // 'handleUpdate' fonksiyonu, todo başlığını güncellemek için kullanılır
     if (todo) {
       updateTodo(todo.id, editedTitle);
       router.back();

@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   Image,
   SafeAreaView,
+  ScrollView,
 } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
@@ -22,6 +23,7 @@ const TravelPlannerScreen = () => {
   };
 
   const filteredDestinations = useMemo(() => {
+    // 'filteredDestinations' değişkeni, popüler destinasyonları arama sorgusuna göre filtreler
     return popularDestinations.filter((item) => {
       const searchLower = searchQuery.toLowerCase();
       return (
@@ -29,7 +31,7 @@ const TravelPlannerScreen = () => {
         item.name.toLowerCase().includes(searchLower)
       );
     });
-  }, [searchQuery]);
+  }, [searchQuery]); // 'searchQuery' değiştiğinde yeniden hesaplanır
 
   const renderDestinationItem = ({ item }: { item: Destination }) => (
     <TouchableOpacity

@@ -1,4 +1,4 @@
-import { useFonts } from "expo-font";
+import { useFonts } from "expo-font"; // Importing the custom font loading hook from Expo
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
@@ -41,24 +41,30 @@ export default function RootLayout() {
 
   return (
     <DestinationProvider>
+      {/* Yerleri saran ve heryerden ulaşma sansı veren DestinationProvider  */}
       <TodoProvider>
         <Stack>
+          {/* Stack bileşeni  birden fazla ekranın yönetilmesini sağlayan bir navigasyon konteyneridir */}
           <Stack.Screen name="index" options={{ headerShown: false }} />
+          {/* 'travel/index' ekranı, başlık olarak "Travel Planner" gösteriliyor */}
           <Stack.Screen
             name="travel/index"
             options={{
-              headerShown: false,
+              headerShown: true,
               headerTitle: "Travel Planner",
             }}
           />
+          {/* 'travel/[id]' ekranı, dinamik bir ID içeren seyahat detayları */}
           <Stack.Screen
             name="travel/[id]"
             options={{ headerShown: true, headerTitle: "Travel Detail" }}
           />
+          {/* 'travel/newDestination' ekranı, yeni bir destinasyon eklemek için */}
           <Stack.Screen
             name="travel/newDestination"
             options={{ headerShown: true, headerTitle: "New Destination" }}
           />
+          {/* 'todo/index' ekranı, bir paketleme listesi gösteriyor */}
           <Stack.Screen
             name="todo/index"
             options={{
@@ -66,6 +72,7 @@ export default function RootLayout() {
               headerTitle: "Packing List",
             }}
           />
+          {/* 'travel/userDestinations' ekranı, kullanıcıya ait destinasyonları gösteriyor */}
           <Stack.Screen
             name="travel/userDestinations"
             options={{
@@ -73,6 +80,7 @@ export default function RootLayout() {
               headerTitle: "Your Destinations",
             }}
           />
+          {/* 'travel/userDestinationDetail/[id]' ekranı, kullanıcıya ait bir destinasyonun detaylarını gösteriyor */}
           <Stack.Screen
             name="travel/userDestinationDetail/[id]"
             options={{
@@ -80,10 +88,14 @@ export default function RootLayout() {
               headerTitle: "Destination Detail",
             }}
           />
+
+          {/* 'todo/[id]' ekranı, belirli bir packing list öğesini düzenlemeye olanak tanıyor */}
           <Stack.Screen
             name="todo/[id]"
             options={{ headerShown: true, headerTitle: "Edit" }}
           />
+
+          {/* 404 veya bulunamayan sayfa için bir placeholder ekran */}
           <Stack.Screen name="+not-found" />
         </Stack>
       </TodoProvider>

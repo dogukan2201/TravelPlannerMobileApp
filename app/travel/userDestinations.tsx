@@ -23,16 +23,18 @@ const CARD_MARGIN = 16;
 const CARD_WIDTH = width - CARD_MARGIN * 2;
 
 const UserDestinations = () => {
-  const [selectedFilter, setSelectedFilter] = useState("All");
+  const [selectedFilter, setSelectedFilter] = useState("All"); // 'selectedFilter' state'i, filtreleme seçeneklerini tutuyor. Başlangıç değeri "All"
   const filters = ["All", "Upcoming", "Past", "Planning"];
-  const { destinations, removeDestination } = useDestinationContext();
-  const [deleteAlert, setDeleteAlert] = useState(false);
+  const { destinations, removeDestination } = useDestinationContext(); // 'destinations' ve 'removeDestination' işlevleri, 'useDestinationContext' üzerinden alınıyor
+  const [deleteAlert, setDeleteAlert] = useState(false); // 'deleteAlert' state'i, silme işlemi için onay uyarısını tutuyor. Başlangıç değeri false
   const [selectedId, setSelectedId] = useState(0);
 
   const handleAddDestination = () => {
+    // 'handleAddDestination' fonksiyonu, kullanıcıyı yeni destinasyon ekleme sayfasına yönlendiriyor
     router.push("/travel/newDestination");
   };
   const handleDeleteDestination = (id: number) => {
+    // 'handleDeleteDestination' fonksiyonu, belirli bir destinasyonu silmek için kullanılır
     setDeleteAlert(true);
     try {
       removeDestination(id);
@@ -41,12 +43,14 @@ const UserDestinations = () => {
     }
   };
 
-  const renderDestinationCard = ({ item }: { item: DestinationProps }) => (
+  const renderDestinationCard = (
+    { item }: { item: DestinationProps } // 'renderDestinationCard' fonksiyonu, her bir destinasyon için kart görünümü render eder
+  ) => (
     <View style={styles.card}>
       <TouchableOpacity
         style={styles.cardContent}
         onPress={() => router.push(`/travel/userDestinationDetail/${item.id}`)}
-        activeOpacity={0.7}
+        activeOpacity={0.7} // Tıklama sırasında opaklık değişimi sağlar
       >
         <View style={styles.cardHeader}>
           <Text style={styles.destinationName}>{item.name}</Text>
@@ -75,6 +79,7 @@ const UserDestinations = () => {
             <MaterialIcons name="event" size={18} color="#666" />
             <Text style={styles.detailText}>
               {item.date.toString().slice(0, 15)}
+              {/* Tarih bilgisini formatlar ve gösterir */}
             </Text>
           </View>
         </View>
@@ -92,9 +97,11 @@ const UserDestinations = () => {
       </TouchableOpacity>
     </View>
   );
-  const renderFilterChip = (filter: string) => (
+  const renderFilterChip = (
+    filter: string // 'renderFilterChip' fonksiyonu her bir filtreyi bir chip (etiket) olarak render eder
+  ) => (
     <TouchableOpacity
-      key={filter}
+      key={filter} // Filtre adına göre benzersiz anahtar belirler
       style={[
         styles.filterChip,
         selectedFilter === filter && styles.selectedFilterChip,
@@ -137,18 +144,18 @@ const UserDestinations = () => {
         </View>
       ) : (
         <View style={styles.filtersContainer}>
-          <FlatList
+          <FlatList // 'FlatList' bileşeni, filtreleri yatay bir liste olarak render eder
             horizontal
-            data={filters}
-            renderItem={({ item }) => renderFilterChip(item)}
+            data={filters} // Liste öğelerini 'filters' dizisinden alır
+            renderItem={({ item }) => renderFilterChip(item)} // Her öğe için 'renderFilterChip' fonksiyonunu çağırır
             showsHorizontalScrollIndicator={false}
             contentContainerStyle={styles.filtersList}
           />
         </View>
       )}
 
-      <FlatList
-        data={filteredDestinations}
+      <FlatList // 'FlatList' bileşeni, filtrelenmiş destinasyonları dikey bir liste olarak render eder
+        data={filteredDestinations} // Liste öğelerini 'filteredDestinations' dizisinden alır
         renderItem={renderDestinationCard}
         keyExtractor={(item) => item.id.toString()}
         showsVerticalScrollIndicator={false}
