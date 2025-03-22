@@ -1,6 +1,38 @@
-# Welcome to your Expo app 👋
+# Travel Mobile App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+This project is a mobile application developed using **Expo** that allows users to plan their travels efficiently. Users can create a personalized travel checklist, add places they wish to visit, and access information about popular destinations via Google Maps integration.
+
+## Features
+
+### Travel Checklist
+- Users can create and manage a travel checklist.
+- The checklist helps users stay organized by tracking essential travel items and plans.
+
+### Destination Management
+- Users can add their desired travel destinations to a personalized list.
+- Each destination can be marked, ensuring easy reference while planning.
+
+### Google Maps Integration
+- The app integrates with **Google Maps** to provide real-time location data.
+- Users can view detailed directions, points of interest, and popular landmarks directly within the app.
+
+### Popular Destinations
+- The app features a curated list of famous travel destinations.
+- Users can access helpful information such as local attractions, cultural highlights, and recommended activities.
+
+### Local Storage Support
+- Users can save their travel plans and checklists locally on their devices.
+- This ensures access to important information even without an internet connection.
+
+### User Experience (UX)
+- Designed with a clean and intuitive interface for seamless navigation.
+- Ensures users can quickly access and manage their travel plans.
+
+### Performance
+- Leveraging **Expo**, the app runs efficiently with fast load times and smooth performance.
+
+## Project Goal
+This project aims to provide users with a comprehensive travel planning solution, combining convenience, organization, and accessibility in one powerful mobile application.
 
 ## Get started
 
